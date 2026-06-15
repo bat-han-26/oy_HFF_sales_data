@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>올리브영 건강기능식품 매출 대시보드</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
+    background:#0f1420;color:#e7ecf3;padding:28px;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto}
+  h1{font-size:26px;font-weight:800;margin-bottom:4px}
+  h1 span{color:#5cc8ff}
+  .sub{color:#8b97a8;font-size:13px;margin-bottom:22px}
+  h2{font-size:18px;margin:30px 0 12px;padding-left:10px;border-left:4px solid #5cc8ff}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:8px}
+  .kpi{background:#1a2334;border:1px solid #2a3550;border-radius:12px;padding:14px 16px}
+  .kpi .t{font-size:12px;color:#8b97a8}
+  .kpi .v{font-size:21px;font-weight:800;margin-top:4px}
+  .kpi .d{font-size:12px;margin-top:3px}
+  .up{color:#4ade80}.down{color:#f87171}.flat{color:#fbbf24}
+  table{width:100%;border-collapse:collapse;background:#161d2c;border-radius:12px;overflow:hidden;margin-bottom:6px}
+  th,td{padding:10px 8px;text-align:left;border-bottom:1px solid #232d42;vertical-align:top;font-size:13px}
+  th{background:#202a40;font-size:12px;color:#9fb0c8;font-weight:700}
+  th.hi{color:#5cc8ff}
+  td.rk{text-align:center;font-weight:800;color:#7b8aa3;width:46px;background:#1a2233}
+  td b{font-weight:700;font-size:13.5px}
+  td .amt{display:block;color:#4ade80;font-weight:700;font-size:12.5px;margin-top:3px}
+  td .brand{display:block;color:#5cc8ff;font-size:11px;font-weight:700}
+  td .pname{display:block;color:#cdd6e4;font-size:11.5px;margin-top:2px}
+  td .rank{display:block;color:#fbbf24;font-size:11px;margin-top:2px}
+  td.lead{background:rgba(92,200,255,.06)}
+  tr.atb td{background:#2a1d33;border-top:2px solid #c084fc}
+  tr.atb td b,tr.atb td .brand{color:#e0b3ff}
+  tr.atb .rk{background:#3a2347;color:#e0b3ff}
+  .chart{background:#161d2c;border:1px solid #232d42;border-radius:12px;padding:18px}
+  .barrow{display:flex;align-items:center;margin:7px 0;gap:10px}
+  .blab{width:120px;font-size:12.5px;color:#9fb0c8;flex-shrink:0;text-align:right}
+  .bar{background:linear-gradient(90deg,#2563eb,#5cc8ff);color:#fff;font-size:12px;font-weight:700;
+    padding:6px 10px;border-radius:6px;white-space:nowrap;min-width:90px}
+  .bar2{background:linear-gradient(90deg,#7c3aed,#c084fc)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .note{background:#161d2c;border:1px solid #232d42;border-radius:12px;padding:16px 18px;font-size:13px}
+  .note ul{margin-left:18px;margin-top:6px}.note li{margin:6px 0;color:#cdd6e4}
+  .note b{color:#fff}.hl{color:#5cc8ff;font-weight:700}.warn{color:#f87171;font-weight:700}
+  .tag{display:inline-block;background:#2a1d33;color:#e0b3ff;border:1px solid #c084fc;border-radius:6px;
+    padding:2px 8px;font-size:11px;margin-right:6px}
+  .foot{color:#6b7689;font-size:11.5px;margin-top:24px;border-top:1px solid #232d42;padding-top:12px}
+  @media(max-width:760px){.kpis,.grid2{grid-template-columns:1fr 1fr}.blab{width:80px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>올리브영 <span>건강기능식품</span> 매출 대시보드</h1>
+  <div class="sub">데이터: oy 매출 데이터 취합.xlsx · 분석단위: 브랜드/제품 · 기준일 2026-06-15 · 전 품목 건기식(이너뷰티·유산균·비타민)</div>
+
+  <h2>① 시장 규모 (기간별 일평균 매출)</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="t">평시 (32일)</div><div class="v">2.35억<small>/일</small></div><div class="d flat">기준 1.00x</div></div>
+    <div class="kpi"><div class="t">세일전주 (7일)</div><div class="v">1.81억<small>/일</small></div><div class="d down">▼ 0.77x · 대기수요</div></div>
+    <div class="kpi"><div class="t">이번 6월 세일 (7일)</div><div class="v">8.56억<small>/일</small></div><div class="d up">▲ 3.65x</div></div>
+    <div class="kpi"><div class="t">지난 3월 세일 (7일)</div><div class="v">9.01억<small>/일</small></div><div class="d up">▲ 3.84x</div></div>
+  </div>
+  <div class="chart"><div class='barrow'><span class='blab'>평시</span><div class='bar' style='width:26%'>2.35억/일 · 1.00x</div></div><div class='barrow'><span class='blab'>세일전주</span><div class='bar' style='width:20%'>1.81억/일 · 0.77x</div></div><div class='barrow'><span class='blab'>이번 올영세일 (6월)</span><div class='bar' style='width:95%'>8.56억/일 · 3.65x</div></div><div class='barrow'><span class='blab'>지난 올영세일 (3월)</span><div class='bar' style='width:100%'>9.01억/일 · 3.84x</div></div></div>
+
+  <h2>② 브랜드 매출 TOP5 + 올더베러 <span style="font-size:13px;color:#8b97a8">(셀: 브랜드 · 매출)</span></h2>
+  <table>
+    <tr><th>순위</th><th>평시</th><th>세일전주</th><th class="hi">이번 올영세일 (6월)</th><th>지난 올영세일 (3월)</th></tr>
+    <tr><td class='rk'>1</td><td class='lead'><b>오쏘몰</b><span class='amt'>5.43억</span></td><td class='lead'><b>덴프스</b><span class='amt'>9,702만</span></td><td class='lead'><b>푸드올로지</b><span class='amt'>3.78억</span></td><td class='lead'><b>오쏘몰</b><span class='amt'>3.90억</span></td></tr><tr><td class='rk'>2</td><td class=''><b>푸드올로지</b><span class='amt'>5.38억</span></td><td class=''><b>푸드올로지</b><span class='amt'>8,965만</span></td><td class=''><b>덴프스</b><span class='amt'>3.47억</span></td><td class=''><b>푸드올로지</b><span class='amt'>3.87억</span></td></tr><tr><td class='rk'>3</td><td class=''><b>덴프스</b><span class='amt'>4.03억</span></td><td class=''><b>오쏘몰</b><span class='amt'>7,896만</span></td><td class=''><b>고려은단</b><span class='amt'>3.28억</span></td><td class=''><b>락토핏</b><span class='amt'>3.05억</span></td></tr><tr><td class='rk'>4</td><td class=''><b>바이오코어유산균</b><span class='amt'>3.74억</span></td><td class=''><b>고려은단</b><span class='amt'>5,869만</span></td><td class=''><b>오쏘몰</b><span class='amt'>2.98억</span></td><td class=''><b>고려은단</b><span class='amt'>2.86억</span></td></tr><tr><td class='rk'>5</td><td class=''><b>지노마스터</b><span class='amt'>3.47억</span></td><td class=''><b>지노마스터</b><span class='amt'>5,492만</span></td><td class=''><b>지노마스터</b><span class='amt'>2.95억</span></td><td class=''><b>덴프스</b><span class='amt'>2.80억</span></td></tr><tr class='atb'><td class='rk'>올더<br>베러</td><td><b>올더베러</b><span class='amt'>1.40억</span><span class='rank'>전체 15위</span></td><td><b>올더베러</b><span class='amt'>2,364만</span><span class='rank'>전체 13위</span></td><td><b>올더베러</b><span class='amt'>7,220만</span><span class='rank'>전체 23위</span></td><td><b>올더베러</b><span class='amt'>1.16억</span><span class='rank'>전체 18위</span></td></tr>
+  </table>
+
+  <h2>③ 잘 팔리는 제품 TOP5 + 올더베러 <span style="font-size:13px;color:#8b97a8">(셀: 브랜드 · 제품 · 매출)</span></h2>
+  <table>
+    <tr><th>순위</th><th>평시</th><th>세일전주</th><th class="hi">이번 올영세일 (6월)</th><th>지난 올영세일 (3월)</th></tr>
+    <tr><td class='rk'>1</td><td class='lead'><span class='brand'>오쏘몰</span><span class='pname'>［포켓몬 에디션］ 오쏘몰 이뮨 멀티비타민&미네랄 14입 단품/</span><span class='amt'>2.66억</span></td><td class='lead'><span class='brand'>덴프스</span><span class='pname'>［포켓몬 에디션］ 덴프스 유산균이야기 다이어트 14캡슐 기획 </span><span class='amt'>3,657만</span></td><td class='lead'><span class='brand'>지노마스터</span><span class='pname'>［포켓몬 에디션］ 지노마스터 질유산균 30캡슐 ( 포켓몬 카드</span><span class='amt'>1.85억</span></td><td class='lead'><span class='brand'>지노마스터</span><span class='pname'>［포켓몬 에디션］ 지노마스터 질유산균 30캡슐 ( 포켓몬 카드</span><span class='amt'>2.28억</span></td></tr><tr><td class='rk'>2</td><td class=''><span class='brand'>멜라메이트</span><span class='pname'>［포켓몬 에디션］ 식물성 멜라토닌 함유 멜라메이트 구미/로우슈</span><span class='amt'>2.19억</span></td><td class=''><span class='brand'>오쏘몰</span><span class='pname'>［포켓몬 에디션］ 오쏘몰 이뮨 멀티비타민&미네랄 14입 단품/</span><span class='amt'>3,514만</span></td><td class=''><span class='brand'>덴프스</span><span class='pname'>덴마크 유산균이야기 30캡슐 1 1기획(60일분)  트루바이타</span><span class='amt'>1.85억</span></td><td class=''><span class='brand'>뉴오리진</span><span class='pname'>［3/7 하루특가］［호빵맨콜라보］ 이너플로라 질유산균 60캡슐</span><span class='amt'>2.16억</span></td></tr><tr><td class='rk'>3</td><td class=''><span class='brand'>지노마스터</span><span class='pname'>［포켓몬 에디션］ 지노마스터 질유산균 30캡슐 ( 포켓몬 카드</span><span class='amt'>2.04억</span></td><td class=''><span class='brand'>덴프스</span><span class='pname'>덴마크 유산균이야기 30캡슐 1 1기획(60일분)  트루바이타</span><span class='amt'>3,010만</span></td><td class=''><span class='brand'>오쏘몰</span><span class='pname'>［포켓몬 에디션］ 오쏘몰 이뮨 멀티비타민&미네랄 14입 단품/</span><span class='amt'>1.46억</span></td><td class=''><span class='brand'>락토핏</span><span class='pname'>［스테디셀러특가］ 락토핏 골드 30포 (1개월분)</span><span class='amt'>2.02억</span></td></tr><tr><td class='rk'>4</td><td class=''><span class='brand'>푸드올로지</span><span class='pname'>［4월 올영픽/헬로키티콜라보］ 콜레올로지 PRO 600mg*3</span><span class='amt'>1.60억</span></td><td class=''><span class='brand'>멜라메이트</span><span class='pname'>［포켓몬 에디션］ 식물성 멜라토닌 함유 멜라메이트 구미/로우슈</span><span class='amt'>2,953만</span></td><td class=''><span class='brand'>바이탈뷰티</span><span class='pname'>［4월 올영픽/리뉴얼］ 바이탈뷰티 메타그린 슬림업 단품/리필/</span><span class='amt'>1.33억</span></td><td class=''><span class='brand'>오쏘몰</span><span class='pname'>［임박특가］ 오쏘몰 이뮨 멀티비타민&미네랄 30입 (30일분)</span><span class='amt'>2.00억</span></td></tr><tr><td class='rk'>5</td><td class=''><span class='brand'>덴프스</span><span class='pname'>덴마크 유산균이야기 30캡슐 1 1기획(60일분)  트루바이타</span><span class='amt'>1.60억</span></td><td class=''><span class='brand'>지노마스터</span><span class='pname'>［포켓몬 에디션］ 지노마스터 질유산균 30캡슐 ( 포켓몬 카드</span><span class='amt'>2,478만</span></td><td class=''><span class='brand'>푸드올로지</span><span class='pname'>［4월 올영픽/헬로키티콜라보］ 콜레올로지 PRO 600mg*3</span><span class='amt'>1.10억</span></td><td class=''><span class='brand'>탄탄슬리밍</span><span class='pname'>［지안씨PICK］ 탄탄 슬리밍 4종 택1 (더블컷 다이어트젤리</span><span class='amt'>1.94억</span></td></tr><tr class='atb'><td class='rk'>올더<br>베러</td><td><span class='brand'>올더베러 (24종)</span><span class='pname'>올더베러 웰니스 구미 30일분 6종 택1</span><span class='amt'>4,899만</span><span class='rank'>전체 31위</span></td><td><span class='brand'>올더베러 (26종)</span><span class='pname'>올더베러 웰니스 구미 30일분 6종 택1</span><span class='amt'>758만</span><span class='rank'>전체 37위</span></td><td><span class='brand'>올더베러 (24종)</span><span class='pname'>올더베러 웰니스 구미 30일분 6종 택1</span><span class='amt'>3,790만</span><span class='rank'>전체 31위</span></td><td><span class='brand'>올더베러 (19종)</span><span class='pname'>올더베러 웰니스 구미 30일분 6종 택1</span><span class='amt'>4,196만</span><span class='rank'>전체 29위</span></td></tr>
+  </table>
+
+  <div class="grid2" style="margin-top:14px">
+    <div>
+      <h2>④ 3월→6월 매출 성장 브랜드</h2>
+      <div class="note">
+        <b>절대 증가액 TOP</b>
+        <ul>
+          <li>덴프스 <span class="up">+0.66억 (+24%)</span> — 대형 중 최대</li>
+          <li>생활약속 +0.62억 (+119%) · 온리추얼 +0.61억 (+118%)</li>
+          <li>칼로 +0.56억 (+87%) · 바이오렉트라 +0.56억 (+278%)</li>
+          <li>젠제네틱스 +0.45억 <span class="up">(+819%)</span></li>
+        </ul>
+        <b>세일 진작효과 TOP (평시→6월 일평균 배수)</b>
+        <ul>
+          <li>칼로 <span class="hl">8.0x</span> · 생활약속 5.7x · 고려은단 5.5x · 락토핏 4.3x</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h2>⑤ 핵심 인사이트</h2>
+      <div class="note">
+        <ul>
+          <li><b>세일=평시 3.6~3.8x</b> 매출 이벤트. 단 6월은 3월 대비 일평균 <span class="down">-4.9%</span> 소폭 감소.</li>
+          <li><b>세일전주는 평시보다 낮음(0.77x)</b> — 세일 대기 구매연기. 세일전주 광고 효율 최저.</li>
+          <li><b>상위 고정 + 중형 약진</b>: 리더 5社 유지, 성장은 100%대 중형 신흥 브랜드에서 발생.</li>
+          <li><b>SKU 전략 양극화</b>: 덴프스형(다품종 60~73종) vs 오쏘몰형(7~10종 집중).</li>
+          <li><b>3월의 매출 집중 리스크</b>: 뉴오리진·탄탄슬리밍 콜라보 한정기획이 6월엔 증발(-79%).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>⑥ <span style="color:#e0b3ff">올더베러</span> 심층 분석</h2>
+  <div class="grid2">
+    <div class="chart"><div style="font-size:13px;color:#9fb0c8;margin-bottom:8px">올더베러 일평균 매출 추이 · 브랜드 전체순위</div><div class='barrow'><span class='blab'>3월세일</span><div class='bar bar2' style='width:100%'>1,662만/일 · 18위</div></div><div class='barrow'><span class='blab'>평시</span><div class='bar bar2' style='width:26%'>436만/일 · 15위</div></div><div class='barrow'><span class='blab'>세일전주</span><div class='bar bar2' style='width:20%'>338만/일 · 13위</div></div><div class='barrow'><span class='blab'>6월세일</span><div class='bar bar2' style='width:62%'>1,031만/일 · 23위</div></div></div>
+    <div class="note">
+      <span class="tag">순위 18위→23위</span><span class="tag">점유율 1.84%→1.20%</span>
+      <ul>
+        <li><b>3월→6월 세일 <span class="down">-38% (-0.44억)</span></b>, 전체순위 18→23위 하락.</li>
+        <li><span class="warn">원인 90%가 단일 SKU</span>: 「올인원 비타민 미네랄 구미 60구미」가 <b>4,083만→103만원 (-97.5%)</b> 붕괴. → <b>노출/재고 누락 즉시 점검 1순위.</b></li>
+        <li>수요가 <b>소용량 트라이얼(7일분·14구미 99특가)로 이동</b> (+230%, +1,866%)했으나, 매출 비중 큰 <b>정량(30일분·60구미) 라인 대거 이탈</b> → 객단가 하락.</li>
+        <li><b>세일 탄력성 2.4x</b>로 시장평균(3.65x)·상위(4~8x)보다 약함 → 세일 노출·프로모션 설계가 경쟁사 대비 약함.</li>
+        <li>전 제품 <b>'구미' 제형</b> 통일 컨셉. 트라이얼 유입은 양호 → <b>트라이얼→정량 전환 설계</b>가 회복 열쇠.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    ※ 3월 세일은 랭킹 데이터 부재(CSV 4/22~)로 매출 비교만 유효. 평시(32일)·세일(7일) 기간 상이 → 일평균 기준 해석.
+    매출 급증/급감 일부는 신규입점·단종·콜라보 한정기획 등 구조적 요인 가능성 있어 MD 추가 확인 권장.
+  </div>
+</div>
+</body>
+</html>
